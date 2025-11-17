@@ -1,0 +1,305 @@
+/* You can add global styles to this file, and also import other style files */
+/* =========================
+   OUTER BACKGROUND DESIGN
+============================ */
+body {
+  background: linear-gradient(135deg, #e8f0ff, #ffffff); /* base gradient */
+  padding: 40px;
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Large abstract circles */
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.4;
+  z-index: -2;
+}
+
+/* Blue circle top-left */
+body::before {
+  width: 500px;
+  height: 500px;
+  top: -150px;
+  left: -150px;
+  background: #a8c4ff;
+  animation: float1 15s ease-in-out infinite;
+}
+
+/* Purple circle bottom-right */
+body::after {
+  width: 550px;
+  height: 550px;
+  bottom: -180px;
+  right: -180px;
+  background: #d4c6ff;
+  animation: float2 18s ease-in-out infinite;
+}
+
+/* Additional decorative circles */
+body::after {
+  box-shadow: 200px -100px 0 0 #ffe5b4, -250px 150px 0 0 #ffb4b4;
+}
+
+/* Floating animations */
+@keyframes float1 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(30px) rotate(45deg); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-25px) rotate(-30deg); }
+}
+
+/* =========================
+       GLOBAL STYLES
+============================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CV Container with card style */
+.cv-container {
+  max-width: 900px;
+  margin: 40px auto; /* margin effect */
+  padding: 40px 60px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  color: #333;
+  line-height: 1.6;
+  border-radius: 12px;
+
+  /* soft shadow */
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.12);
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================
+        HEADER DESIGN
+============================ */
+.cv-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 25px 10px;
+  border-radius: 10px;
+
+  /* gradient header background */
+  background: linear-gradient(to right, #0066cc, #003366);
+  color: #fff;
+
+  /* subtle shadow */
+  box-shadow: 0px 10px 25px rgba(0, 50, 120, 0.25);
+
+  /* fade animation */
+  animation: headerFade 0.9s ease;
+}
+
+@keyframes headerFade {
+  from { opacity: 0; transform: translateY(-15px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Name styling with underline animation */
+.name {
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  color: #fff;
+  position: relative;
+}
+
+.name::after {
+  content: "";
+  width: 80px;
+  height: 4px;
+  background: #ffffff;
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  animation: underlineGrow 1s ease forwards;
+}
+
+@keyframes underlineGrow {
+  from { width: 0; opacity: 0; }
+  to   { width: 80px; opacity: 1; }
+}
+
+.contact-info {
+  font-size: 0.95rem;
+  color: #e6e6e6;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.contact-item strong {
+  color: #ffffff;
+}
+
+.contact-item a {
+  color: #cde4ff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.contact-item a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.separator {
+  color: #c4c4c4;
+}
+
+.divider {
+  display: none; /* header already styled */
+}
+
+/* =========================
+         CONTENT
+============================ */
+.cv-content {
+  margin-top: 30px;
+}
+
+.profile-section,
+.skills-section,
+.technical-skills {
+  margin-bottom: 35px;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #003366;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #0066cc;
+  text-transform: uppercase;
+}
+
+/* Profile Section */
+.profile-text {
+  font-size: 1rem;
+  color: #444;
+  text-align: justify;
+  line-height: 1.8;
+}
+
+/* Skills Section */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.skills-list li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.skills-list li::before {
+  content: "•";
+  position: absolute;
+  left: 5px;
+  color: #0066cc;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* =========================
+ TECHNICAL PROFICIENCIES (Hover Only)
+============================ */
+.tech-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.tech-category {
+  background-color: #f1f6ff;
+  padding: 18px 20px;
+  border-radius: 6px;
+  border-left: 4px solid #0066cc;
+  transition: 0.3s ease;
+}
+
+.tech-category:hover {
+  background-color: #dceaff;
+  border-color: #004fa3;
+  transform: translateY(-6px);
+  box-shadow: 0px 12px 25px rgba(0, 50, 120, 0.25);
+}
+
+/* Titles */
+.category-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #003366;
+  margin-bottom: 8px;
+}
+
+.tech-items {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* =========================
+         RESPONSIVE
+============================ */
+@media (max-width: 768px) {
+  .cv-container {
+    padding: 30px 25px;
+  }
+
+  .name {
+    font-size: 2.2rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .cv-container {
+    padding: 20px 15px;
+  }
+
+  .name {
+    font-size: 1.8rem;
+  }
+
+  .profile-text {
+    font-size: 0.9rem;
+  }
+}
+
+/* =========================
+          PRINT
+============================ */
+@media print {
+  .cv-container {
+    padding: 20px;
+  }
+}
