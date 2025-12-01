@@ -1,0 +1,34 @@
+<section class="employee-list">
+  <h2>Employee List</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Emp No</th>
+        <th>Fullname</th>
+        <th>Gender</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th *ngIf="showSalary">Salary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Loop through employees using *ngFor -->
+      <tr *ngFor="let emp of employees">
+        <td>{{ emp.empNo }}</td>
+        <td>{{ emp.fullname }}</td>
+        <td>{{ emp.gender }}</td>
+        <td>{{ emp.email }}</td>
+        <td>
+          <!-- Conditional status display using *ngIf / *ngIf else -->
+          <span *ngIf="emp.status === 'Full-time'; else otherStatus">{{ emp.status }}</span>
+          <ng-template #otherStatus>{{ emp.status }} Employee</ng-template>
+        </td>
+        <td *ngIf="showSalary">{{ emp.salary | currency }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Message if no employees -->
+  <p *ngIf="employees.length === 0">No employees found.</p>
+</section>

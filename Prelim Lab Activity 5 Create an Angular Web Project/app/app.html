@@ -1,0 +1,12 @@
+<!-- Navigation Bar -->
+<nav class="navbar">
+  <ul>
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+    <li><a routerLink="/employees" routerLinkActive="active">Employees</a></li>
+    <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+    <li><a routerLink="/products" routerLinkActive="active">Products</a></li>
+  </ul>
+</nav>
+
+<!-- Routed Page Content -->
+<router-outlet></router-outlet>

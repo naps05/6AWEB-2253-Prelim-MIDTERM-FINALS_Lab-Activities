@@ -1,0 +1,15 @@
+<section class="products-page">
+  <h1>Our Products</h1>
+  <p>Explore our delicious Snickers chocolate bars and variations!</p>
+
+  <div class="product-grid">
+    <div class="product-card" *ngFor="let product of products">
+      <div class="product-image">
+        <img [src]="product.image" [alt]="product.name" />
+      </div>
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.description }}</p>
+      <p class="price">{{ product.price | currency }}</p>
+    </div>
+  </div>
+</section>
