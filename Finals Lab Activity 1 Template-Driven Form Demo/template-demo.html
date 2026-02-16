@@ -1,0 +1,100 @@
+<div class="bank-portal">
+  <div class="container">
+    <form (ngSubmit)="onSubmit()" #myForm="ngForm" class="row g-4 justify-content-center">
+
+      <div class="col-md-7">
+        <div class="bank-card shadow">
+          <div *ngIf="!submitted">
+            <div class="bank-header text-center mb-4">
+              <h3 class="text-navy">{{ title }}</h3>
+              <p class="text-muted">Secure Application Portal</p>
+            </div>
+
+            <div class="mb-3">
+              <label class="bank-label">Full Name</label>
+              <input type="text" name="username" [(ngModel)]="username" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="bank-label">Email Address</label>
+              <input type="email" name="email" [(ngModel)]="email" class="form-control" required email>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="bank-label">Gender</label>
+                <div class="d-flex gap-3 mt-1">
+                  <label><input type="radio" name="gender" [(ngModel)]="gender" value="Male" required> Male</label>
+                  <label><input type="radio" name="gender" [(ngModel)]="gender" value="Female"> Female</label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="bank-label">Employment Status</label>
+                <select name="status" [(ngModel)]="status" class="form-select" required>
+                  <option value="" disabled selected>Select status</option>
+                  <option value="Permanent">Permanent</option>
+                  <option value="Probationary">Probationary</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="bank-label">Account Security (Password)</label>
+              <input type="password" name="password" [(ngModel)]="password" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="bank-label">Account Type</label>
+              <select name="role" [(ngModel)]="role" class="form-select" required>
+                <option value="" disabled selected>Choose type</option>
+                <option value="Savings">Savings Account</option>
+                <option value="Checking">Checking Account</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-bank w-100" [disabled]="!myForm.valid">
+              REGISTER ACCOUNT
+            </button>
+          </div>
+
+          <div *ngIf="submitted" class="success-screen text-center py-5">
+            <div class="check-icon">✓</div>
+            <h2 class="mt-4">Success!</h2>
+            <p>Application for <strong>{{ username }}</strong> submitted.</p>
+            <button type="button" class="btn btn-outline-navy mt-3" (click)="resetForm()">Edit Details</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="preview-card shadow">
+          <div class="preview-header">LIVE ACCOUNT PREVIEW</div>
+          <div class="preview-body">
+            <div class="preview-item"><span>Name:</span> {{ username || '---' }}</div>
+            <div class="preview-item"><span>Email:</span> {{ email || '---' }}</div>
+            <div class="preview-item"><span>Gender:</span> {{ gender || '---' }}</div>
+            <div class="preview-item"><span>Status:</span> {{ status || '---' }}</div>
+            <div class="preview-item"><span>Type:</span> {{ role || '---' }}</div>
+          </div>
+
+          <div class="p-3 bg-light border-top">
+            <small class="text-uppercase fw-bold text-muted d-block mb-2">Validation Debug:</small>
+            <div style="font-size: 0.75rem;">
+               <span [style.color]="myForm.controls['username']?.valid ? 'green' : 'red'">● Name</span> |
+               <span [style.color]="myForm.controls['email']?.valid ? 'green' : 'red'">● Email</span> |
+               <span [style.color]="myForm.controls['gender']?.valid ? 'green' : 'red'">● Gender</span> |
+               <span [style.color]="myForm.controls['password']?.valid ? 'green' : 'red'">● Password</span>
+            </div>
+          </div>
+
+          <div class="preview-footer text-center mt-3 pb-3">
+             <span class="badge" [ngClass]="myForm.valid ? 'bg-success' : 'bg-secondary'">
+               {{ myForm.valid ? 'Ready to Open' : 'Filling Form...' }}
+             </span>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
