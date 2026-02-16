@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: #002e5d; border-bottom: 3px solid #ecae1a;">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BDO_Unibank_%28logo%29.svg/500px-BDO_Unibank_%28logo%29.svg.png"
+           alt="BDO Logo"
+           height="30"
+           class="d-inline-block align-top me-2 bg-white p-1 rounded">
+      BANKING SYSTEM
+    </a>
+
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link px-3" routerLink="/template" routerLinkActive="active"
+         style="cursor: pointer; font-weight: 500;">Template-Driven</a>
+
+      <a class="nav-link px-3" routerLink="/reactive" routerLinkActive="active"
+         style="cursor: pointer; font-weight: 500;">Reactive Form</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <router-outlet></router-outlet>
+</div>

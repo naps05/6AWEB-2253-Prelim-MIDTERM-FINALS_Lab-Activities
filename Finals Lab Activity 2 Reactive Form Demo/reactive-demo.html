@@ -1,0 +1,126 @@
+<div class="container mt-4 mb-2">
+  <div class="d-flex justify-content-between align-items-center bg-white p-3 shadow-sm rounded border-top border-primary">
+    <h5 class="text-navy m-0">Reactive Form Mode</h5>
+    <button class="btn btn-primary" routerLink="/template">
+       Go to Template Form →
+    </button>
+  </div>
+</div>
+
+<div class="bank-portal">
+  <div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row g-4 justify-content-center">
+
+      <div class="col-md-7">
+        <div class="bank-card shadow">
+          <div *ngIf="!submitted">
+            <div class="bank-header text-center mb-4">
+              <h3 class="text-navy">Reactive Bank Registration</h3>
+              <p class="text-muted">Model-Driven Secure Portal</p>
+            </div>
+
+            <div class="mb-3">
+              <label class="bank-label">Full Name (Username)</label>
+              <input type="text" formControlName="username" class="form-control"
+                     [class.is-invalid]="isInvalid('username')">
+              <div class="text-danger" style="font-size: 0.75rem;" *ngIf="isInvalid('username')">
+                Username: 4-12 chars (letters/numbers/_)
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="bank-label">Email Address</label>
+              <input type="email" formControlName="email" class="form-control"
+                     [class.is-invalid]="isInvalid('email')">
+              <div class="text-danger" style="font-size: 0.75rem;" *ngIf="isInvalid('email')">
+                Enter a valid email
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="bank-label">Gender</label>
+                <div class="d-flex gap-3 mt-1">
+                  <label><input type="radio" formControlName="gender" value="Male"> Male</label>
+                  <label><input type="radio" formControlName="gender" value="Female"> Female</label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="bank-label">Employment Status</label>
+                <select formControlName="status" class="form-select">
+                  <option value="" disabled selected>Select status</option>
+                  <option value="Permanent">Permanent</option>
+                  <option value="Probationary">Probationary</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="bank-label">Account Security (Password)</label>
+              <div class="input-group">
+                <input [type]="hidePassword ? 'password' : 'text'"
+                       formControlName="password"
+                       class="form-control"
+                       [class.is-invalid]="isInvalid('password')">
+                <button class="btn btn-outline-secondary" type="button" (click)="togglePassword()">
+                  <small>{{ hidePassword ? 'SHOW' : 'HIDE' }}</small>
+                </button>
+              </div>
+              <div class="text-danger" style="font-size: 0.75rem;" *ngIf="isInvalid('password')">
+                Password: 8+ with upper, lower, number
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="bank-label">Account Type</label>
+              <select formControlName="role" class="form-select">
+                <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-bank w-100" [disabled]="form.invalid">
+              REGISTER ACCOUNT
+            </button>
+          </div>
+
+          <div *ngIf="submitted" class="success-screen text-center py-5">
+            <div class="check-icon">✓</div>
+            <h2 class="mt-4">Success!</h2>
+            <p>Application for <strong>{{ form.value.username }}</strong> submitted.</p>
+            <button type="button" class="btn btn-outline-navy mt-3" (click)="submitted = false">New Registration</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="preview-card shadow">
+          <div class="preview-header text-uppercase">Live Reactive Preview</div>
+          <div class="preview-body">
+            <div class="preview-item"><span>Name:</span> {{ form.value.username || '---' }}</div>
+            <div class="preview-item"><span>Email:</span> {{ form.value.email || '---' }}</div>
+            <div class="preview-item"><span>Gender:</span> {{ form.value.gender || '---' }}</div>
+            <div class="preview-item"><span>Status:</span> {{ form.value.status || '---' }}</div>
+            <div class="preview-item"><span>Type:</span> {{ form.value.role || '---' }}</div>
+          </div>
+
+          <div class="p-3 bg-light border-top">
+            <small class="text-uppercase fw-bold text-muted d-block mb-2">Validation Debug:</small>
+            <div style="font-size: 0.75rem;">
+               <span [style.color]="form.get('username')?.valid ? 'green' : 'red'">● Name</span> |
+               <span [style.color]="form.get('email')?.valid ? 'green' : 'red'">● Email</span> |
+               <span [style.color]="form.get('gender')?.valid ? 'green' : 'red'">● Gender</span> |
+               <span [style.color]="form.get('password')?.valid ? 'green' : 'red'">● Password</span>
+            </div>
+          </div>
+
+          <div class="preview-footer text-center mt-3 pb-3">
+             <span class="badge" [ngClass]="form.valid ? 'bg-success' : 'bg-secondary'">
+               {{ form.valid ? 'Ready to Open' : 'Filling Form...' }}
+             </span>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
